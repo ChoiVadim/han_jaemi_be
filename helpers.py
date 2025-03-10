@@ -29,6 +29,7 @@ async def analyze_transcript_openai(transcript: str) -> dict:
 
     return json.loads(completion.choices[0].message.content)
 
+
 async def get_summary(data: str) -> dict:
     completion = client.chat.completions.create(
         model="gpt-4o-mini",
@@ -40,6 +41,7 @@ async def get_summary(data: str) -> dict:
     )
 
     return json.loads(completion.choices[0].message.content)
+
 
 async def get_questions(data: str) -> dict:
     completion = client.chat.completions.create(
@@ -54,8 +56,6 @@ async def get_questions(data: str) -> dict:
     return json.loads(completion.choices[0].message.content)
 
 
-
-
 async def get_transcript(video_id):
     try:
         transcript = YouTubeTranscriptApi.get_transcript(video_id, languages=["ko"])
@@ -67,8 +67,6 @@ async def get_transcript(video_id):
     except TranscriptsDisabled:
         logging.info(f"Transcripts are disabled for video: {video_id}")
         return None
-
-
 
 
 async def main():

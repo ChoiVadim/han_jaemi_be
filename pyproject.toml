@@ -1,0 +1,14 @@
+[project]
+name = "jaemi-be"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi[standard]>=0.115.11",
+    "google-genai>=1.5.0",
+    "google-generativeai>=0.8.4",
+    "load-dotenv>=0.1.0",
+    "openai>=1.65.5",
+    "youtube-transcript-api>=0.6.3",
+]

@@ -17,7 +17,8 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-#/api/grammar-and-vocabulary/3HFuXBBVP24
+# /api/grammar-and-vocabulary/3HFuXBBVP24
+
 
 @app.get("/api/grammar-and-vocabulary/{id}")
 async def read_root(id: str):
@@ -39,6 +40,7 @@ async def read_root(data: str):
     if data:
         summary = await get_summary(data)
     return summary
+
 
 @app.get("/items/{item_id}")
 def read_item(item_id: int, q: Union[str, None] = None):
