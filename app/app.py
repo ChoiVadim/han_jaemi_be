@@ -1,8 +1,8 @@
+import json
 from typing import Union
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from httpx import request
 
 from helpers import *
 
@@ -11,7 +11,7 @@ app = FastAPI()
 # Configure CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -24,8 +24,11 @@ app.add_middleware(
 async def read_root(id: str):
     transcript = await get_transcript(id)
     if transcript:
-        grammar_and_vocab = await analyze_transcript_openai(json.dumps(transcript))
-    return grammar_and_vocab
+        # Call the test_gemini function with proper error handling
+        result = test_gemini(transcript)
+        return result
+    else:
+        return {"error": "No transcript found for this video ID"}
 
 
 @app.post("/api/grammar-and-vocabulary/questions")

@@ -10,5 +10,6 @@ dependencies = [
     "google-generativeai>=0.8.4",
     "load-dotenv>=0.1.0",
     "openai>=1.65.5",
-    "youtube-transcript-api>=0.6.3",
+    "vertexai>=1.71.1",
+    "youtube-transcript-api>=1.2.2",
 ]
