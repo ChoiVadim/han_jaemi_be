@@ -582,6 +582,7 @@ dependencies = [
     { name = "google-generativeai" },
     { name = "load-dotenv" },
     { name = "openai" },
+    { name = "supadata" },
     { name = "vertexai" },
     { name = "youtube-transcript-api" },
 ]
@@ -593,6 +594,7 @@ requires-dist = [
     { name = "google-generativeai", specifier = ">=0.8.4" },
     { name = "load-dotenv", specifier = ">=0.1.0" },
     { name = "openai", specifier = ">=1.65.5" },
+    { name = "supadata", specifier = ">=1.4.0" },
     { name = "vertexai", specifier = ">=1.71.1" },
     { name = "youtube-transcript-api", specifier = ">=1.2.2" },
 ]
@@ -1069,6 +1071,18 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/04/1b/52b27f2e13ceedc79a908e29eac426a63465a1a01248e5f24aa36a62aeb3/starlette-0.46.1.tar.gz", hash = "sha256:3c88d58ee4bd1bb807c0d1acb381838afc7752f9ddaec81bbe4383611d833230", size = 2580102 }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/a0/4b/528ccf7a982216885a1ff4908e886b8fb5f19862d1962f56a3fce2435a70/starlette-0.46.1-py3-none-any.whl", hash = "sha256:77c74ed9d2720138b25875133f3a2dae6d854af2ec37dceb56aef370c1d8a227", size = 71995 },
+]
+
+[[package]]
+name = "supadata"
+version = "1.4.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "requests" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/2d/f3/f2938b0d933789fb04e29c9a494245fe04d0368333b192817dfde133f1d4/supadata-1.4.0.tar.gz", hash = "sha256:a43a05ae158b87ab8cb5c7e6e7ba4ef4ccd0d479e4ae1821978d429878e86849", size = 18951 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/44/e9/5f9ae7d14491b553075947cff0dcbbfaebdc622b9e44d4deda7db62cb8c7/supadata-1.4.0-py3-none-any.whl", hash = "sha256:e7d394f07dcaaf9e37d3e07d054b573966f0752a413245d54fe311fc598493c4", size = 15966 },
 ]
 
 [[package]]

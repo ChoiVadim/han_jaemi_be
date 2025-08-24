@@ -5,6 +5,7 @@ from pprint import pprint
 
 from openai import OpenAI
 from dotenv import load_dotenv
+from supadata import Supadata
 from youtube_transcript_api import (
     YouTubeTranscriptApi,
     NoTranscriptFound,
@@ -102,7 +103,6 @@ async def get_questions(data: str) -> dict:
 
 async def get_transcript(video_id):
     try:
-        # Create API instance as per documentation
         ytt_api = YouTubeTranscriptApi()
         
         try:
@@ -133,11 +133,37 @@ async def get_transcript(video_id):
         print(f"Error fetching transcript: {str(e)}")
         return None
 
+async def get_transcript_using_supadata(video_id):
+    try:
+        supadata = Supadata(api_key=os.getenv("SUPADATA_API_KEY"))
+        transcript = supadata.youtube.transcript(
+            video_id=video_id,
+            text=False # Set to False to get the transcript with timestamps
+        )
+        if transcript.content:
+            transcript_text = [{"text": chunk.text, "offset": chunk.offset, "duration": chunk.duration} for chunk in transcript.content]
+            return str(transcript_text)
+        else:
+            logging.info(f"No transcript content available for video: {video_id}")
+            print(f"No transcript content available for video: {video_id}")
+            return None
+
+    except Exception as e:
+        # Check if the error is related to no subtitles being available
+        error_msg = str(e).lower()
+        if "no transcript" in error_msg or "subtitles" in error_msg or "captions" in error_msg:
+            logging.info(f"No subtitles found for video: {video_id}")
+            print(f"No subtitles found for video: {video_id}")
+        else:
+            logging.error(f"Error fetching transcript for video {video_id}: {str(e)}")
+            print(f"Error fetching transcript: {str(e)}")
+        return None
 
 async def main():
-    transcript = await get_transcript("3YBYF7JRI1Y")
+    transcript = await get_transcript_using_supadata("JRoEBlYNlZw")
+    pprint(transcript)
     if transcript:
-        grammar_and_vocab = await analyze_transcript_openai(json.dumps(transcript))
+        grammar_and_vocab = await analyze_transcript_openai(transcript)
         pprint(grammar_and_vocab)
     else:
         logging.info("No transcript found for the given video ID.")

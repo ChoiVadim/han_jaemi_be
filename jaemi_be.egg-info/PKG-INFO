@@ -1,0 +1,13 @@
+Metadata-Version: 2.4
+Name: jaemi-be
+Version: 0.1.0
+Summary: Add your description here
+Requires-Python: >=3.12
+Description-Content-Type: text/markdown
+Requires-Dist: fastapi[standard]>=0.115.11
+Requires-Dist: google-genai>=1.5.0
+Requires-Dist: google-generativeai>=0.8.4
+Requires-Dist: load-dotenv>=0.1.0
+Requires-Dist: openai>=1.65.5
+Requires-Dist: vertexai>=1.71.1
+Requires-Dist: youtube-transcript-api>=1.2.2
